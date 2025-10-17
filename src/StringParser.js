@@ -1,10 +1,10 @@
 class StringParser {
 
     // 커스텀 문자열 구분을 위한 정규식
-    const regex = /^(?:\/\/(.+)\n(.+)|(.+))$/;
+    static regex = /^(?:\/\/(.+)\n(.+)|(.+))$/;
 
     // 입력받은 text를 파싱하는 기능
-    function parseSeparatorAndNumber(text) {
+    static parseSeparatorAndNumber(text) {
 
         // 입력값이 문자열이 아닐 경우 필터링
         if (typeof text !== 'string') {
@@ -35,7 +35,7 @@ class StringParser {
     }
 
     // 커스텀 구분자를 포함한 최종 구분자 생성
-    function makeFinalSeparator(separator) {
+    static makeFinalSeparator(separator) {
         if (!separator) return /[:,]/;
         return new RegExp(`(?:${[':',',',separator].join('|')})`);
     }
