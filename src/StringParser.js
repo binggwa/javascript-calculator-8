@@ -6,8 +6,18 @@ class StringParser {
     // 입력받은 text를 파싱하는 기능
     function parseSeparatorAndNumber(text) {
 
+        // 입력값이 문자열이 아닐 경우 필터링
+        if (typeof text !== 'string') {
+            throw new Error('[ERROR] 입력값이 문자열이 아닙니다!');
+        }
+
         // match 메소드를 이용해 커스텀 구분자 존재여부 확인
         const match = text.match(regex);
+
+        // 정규식에 맞지 않는 문자열이 들어왔을 경우 필터링
+        if (!match) {
+            throw new Error('[ERROR] 정규식 매칭 실패!');
+        }
 
         // 커스텀 구분자가 있는 경우
         if (match[1]) {
