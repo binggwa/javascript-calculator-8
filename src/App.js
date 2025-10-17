@@ -1,4 +1,4 @@
-import { Console } from "@woowacourse/mission-utils";
+import { Console } from '@woowacourse/mission-utils';
 import AddCalculator from './AddCalculator.js';
 
 class App {
@@ -18,7 +18,7 @@ class App {
 
       // [ERROR] 로 시작하는 메시지 출력
       Console.print(error.message);
-      
+
     }
   }
 }
