@@ -1,6 +1,11 @@
 import StringParser from './StringParser.js';
 
 class AddCalculator {
+    /**
+     * 입력받은 텍스트를 파싱하고, 최종 구분자를 결정한 뒤 숫자를 추출해 더한 값을 반환한다.
+     * @param {string} text 덧셈을 수행하고 싶은 원본 문자열
+     * @returns {number} 문자열에 포함된 숫자의 누적값
+     */
     static add(text) {
         // 빈 문자열이면 0 반환
         if (text === '') return 0;
