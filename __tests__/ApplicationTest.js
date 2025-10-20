@@ -30,7 +30,7 @@ describe('문자열 계산기', () => {
     outputs.forEach((output) => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(output));
     });
-  })
+  });
 
   test('커스텀 구분자 사용', async () => {
     const inputs = ['//;\\n1'];
@@ -60,7 +60,37 @@ describe('문자열 계산기', () => {
     outputs.forEach((output) => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(output));
     });
-  })
+  });
+
+  test('빈 문자열 입력 시 0 반환', async () => {
+    const inputs = [''];
+    mockQuestions(inputs);
+
+    const logSpy = getLogSpy();
+    const outputs = ['결과 : 0'];
+
+    const app = new App();
+    await app.run();
+
+    outputs.forEach((output) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(output));
+    });
+  });
+
+  test('정규식 메타문자 사용 테스트', async () => {
+    const inputs = ['//+\\n1+2:3,4'];
+    mockQuestions(inputs);
+
+    const logSpy = getLogSpy();
+    const outputs = ['결과 : 10'];
+
+    const app = new App();
+    await app.run();
+
+    outputs.forEach((output) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(output));
+    });
+  });
 
   test('음수 문자 실패', async () => {
     const inputs = ['-1,2,3'];
@@ -78,5 +108,32 @@ describe('문자열 계산기', () => {
     const app = new App();
 
     await expect(app.run()).rejects.toThrow(/^\[ERROR\]/);
-  })
+  });
+
+  test('구분자 사이에 숫자가 없으면 실패', async () => {
+    const inputs = ['1,,3'];
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow(/^\[ERROR\]/);
+  });
+
+  test('구분자 사이가 숫자가 아닌 경우', async () => {
+    const inputs = ['1,a,3'];
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow(/^\[ERROR\]/);
+  });
+
+  test('입력값이 문자열이 아닌 경우', async () => {
+    const inputs = [1,2,3];
+    mockQuestions(inputs);
+
+    const app = new App();
+
+    await expect(app.run()).rejects.toThrow(/^\[ERROR\]/);
+  });
 });
