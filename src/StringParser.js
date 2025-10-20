@@ -6,8 +6,8 @@ class StringParser {
     /**
      * 입력받은 문자열을 정규식으로 필터링하여, 구분자와 덧셈 문자열로 반환한다.
      * @param {string} text 정규식으로 검사할 문자열
-     * @throws 정규식 매칭에 실패했을 때
-     * @returns {{ separator: string, numStr: string }} 구분자 및 덧셈 문자열
+     * @throws {Error} 정규식 매칭에 실패했을 때
+     * @returns {{ separator: string|null, numStr: string }} 구분자 및 덧셈 문자열
      */
     static parseSeparatorAndNumber(text) {
 
