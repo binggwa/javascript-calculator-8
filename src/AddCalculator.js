@@ -1,9 +1,7 @@
 import StringParser from './StringParser.js';
 
 class AddCalculator {
-
     static add(text) {
-
         // 빈 문자열이면 0 반환
         if (text === '') return 0;
 
